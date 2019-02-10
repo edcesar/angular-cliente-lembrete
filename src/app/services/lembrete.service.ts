@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 import { Lembrete } from '../interfaces/lembrete';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class LembreteService {
   }
 
   addLembrete(lembrete: Lembrete): Observable<Lembrete> {
-    const url = `${environment.lembretesApiUrl}/lembrete`;
+    const url = `${environment.lembretesApiUrl}/lembrete/`;
     return this.http.post<Lembrete>(url, lembrete);
   }
 
@@ -31,7 +31,7 @@ export class LembreteService {
     return this.http.put<Lembrete>(url, lembrete);
   }
 
-  deletaLembrete(): Observable<Lembrete> {
+  deletaLembrete(id: number): Observable<Lembrete> {
     const url = `${environment.lembretesApiUrl}/lembrete/${id}`;
     return this.http.delete<Lembrete>(url);
   }

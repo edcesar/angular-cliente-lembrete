@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Lembrete } from '../../interfaces/lembrete';
 import { LembreteService } from '../../services/lembrete.service';
-import { ErrorMsgComponent } from '../../compartilhado/error-msg/error-msg.component'
+import { ErrorMsgComponent } from '../../compartilhado/error-msg/error-msg.component';
 
 @Component({
   selector: 'app-lista-lembrete',
@@ -11,12 +11,11 @@ import { ErrorMsgComponent } from '../../compartilhado/error-msg/error-msg.compo
 export class ListaLembreteComponent implements OnInit {
   public lembretes: Lembrete[];
   @ViewChild(ErrorMsgComponent) errorMsgComponent: ErrorMsgComponent;
-  
-  constructor(private lembreteService: LembreteService) { 
 
-  }
+  constructor(private lembreteService: LembreteService) { }
 
   ngOnInit() {
+    this.getListaLembretes();
   }
 
   getListaLembretes() {
@@ -27,7 +26,7 @@ export class ListaLembreteComponent implements OnInit {
   }
 
   deletaLembrete(id: number) {
-    this.lembreteService.deletaLembrete()
+    this.lembreteService.deletaLembrete(id)
       .subscribe(() => {
         this.getListaLembretes();
       }, () => { this.errorMsgComponent.setError('Falha ao deletar lembrete.'); });
@@ -36,4 +35,5 @@ export class ListaLembreteComponent implements OnInit {
   existemLembretes(): boolean {
     return this.lembretes && this.lembretes.length > 0;
   }
+
 }

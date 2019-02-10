@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  lembretesApiUrl: 'https://localhost:5000/api'
+  lembretesApiUrl: 'https://deviup.com.br:3001/api/'
 };
 
 /*
